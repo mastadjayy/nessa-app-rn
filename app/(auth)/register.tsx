@@ -5,17 +5,17 @@ import { useRouter } from 'expo-router'
 import Icon from '@/assets/icons'
 import BackButton from '@/components/BackButton'
 import CustomInput from '@/components/CustomInput'
+import CustomButton from '@/components/CustomButton'
 import ScreenWrapper from '@/components/ScreenWrapper'
 import { wp, hp } from '@/helpers/common'
-import { supabase } from '@/lib/supabase'
 import { theme } from '@/constants/theme'
-import CustomButton from '@/components/CustomButton'
+import { supabase } from '@/lib/supabase'
 
 const Register = () => {
   const router = useRouter()
   // Using useRef instead of useState to store email, name & password
+  const usernameRef = useRef("")
   const emailRef = useRef("")
-  const nameRef = useRef("")
   const passwordRef = useRef("")
   const [loading, setLoading] = useState(false)
 
@@ -25,7 +25,7 @@ const Register = () => {
       return
     }
     // Trim email, name & password
-    let name = nameRef.current.trim()
+    let username = usernameRef.current.trim()
     let email = emailRef.current.trim()
     let password = passwordRef.current.trim()
 
@@ -36,7 +36,7 @@ const Register = () => {
       password,
       options: {
         data: {
-          email
+          username
         }
       }
     })
@@ -65,6 +65,12 @@ const Register = () => {
 
         {/* Form */}
         <View style={styles.form}>
+          <CustomInput
+            icon={<Icon name="user" size={26} strokeWidth={1.6} color={theme.colors.darkGray} />}
+            placeholder='Pseudo'
+            onChangeText={value => usernameRef.current = value}
+            containerStyle={{borderColor: theme.colors.gray, backgroundColor: theme.colors.gray}}
+          />
           <CustomInput
             icon={<Icon name="mail" size={26} strokeWidth={1.6} color={theme.colors.darkGray} />}
             placeholder='Adresse email'

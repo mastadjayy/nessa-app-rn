@@ -1,8 +1,9 @@
 import React from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text, StyleSheet, Image, Pressable } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { theme } from "@/constants/theme"
 import { wp, hp } from "@/helpers/common"
+import { Link } from "expo-router"
 
 type LessonScreenHeaderProps = {
   activeCourse: string;
@@ -22,9 +23,13 @@ const LessonScreenHeader = ({
 
   return (
     <View style={[styles.container, {paddingTop}]}>
+      <Link href="/(protected)/(main)/courses">
+        <Image source={require("../assets/images/trk.png")} resizeMode="center" style={{height: hp(2), width:wp(4)}}/>
+      </Link>
+
       <Text style={styles.text}>{activeCourse}</Text>
       <Text style={styles.text}>{points}</Text>
-      <Text style={styles.text}>{activeCourse}</Text>
+      <Text style={styles.text}>{hearts}</Text>
     </View>
   )
 }

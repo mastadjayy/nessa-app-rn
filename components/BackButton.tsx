@@ -3,7 +3,7 @@ import React from 'react'
 import Icon from '@/assets/icons'
 import { theme } from '@/constants/theme'
 
-const BackButton = ({size=26, router}) => {
+const BackButton = ({size=26, router}: any) => {
   return (
     <Pressable onPress={()=>router.back()} style={styles.buttonStyle}>
       <Icon

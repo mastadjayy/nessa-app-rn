@@ -15,3 +15,4 @@ Developed with [Expo](https://expo.dev).
    ```bash
     npx expo start -c
    ```
+   
